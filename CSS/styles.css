@@ -47,19 +47,29 @@ p {
     gap: 20px;
 }
 
-.image img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+.image {
+    width: 200px; /* Durchmesser des Kreises */
+    height: 200px; /* Höhe entspricht der Breite für einen perfekten Kreis */
+    border-radius: 50%; /* Macht das Element rund */
+    border: 3px solid #ffffff; /* Weißer Rand um das Bild */
+    overflow: hidden; /* Versteckt den Teil des Bildes, der außerhalb des Kreises liegt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2); /* Optional: Schatteneffekt */
 }
 
-.image img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+.image img {
+    width: auto;
+    height: 100%;
+    object-fit: cover; /* Bild füllt den Container, ohne das Seitenverhältnis zu verändern */
+    transition: transform 0.3s ease-in-out; /* Sanfter Übergang für den Hover-Effekt */
 }
+
+.image:hover img {
+    transform: scale(1.1); /* Vergrößert das Bild leicht beim Darüberfahren mit der Maus */
+}
+
 
 /* Skills Section */
 .skills {
