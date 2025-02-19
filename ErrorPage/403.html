@@ -13,7 +13,7 @@
         function updateCountdown() {
             document.getElementById("countdown").innerText = timeLeft;
             if (timeLeft <= 0) {
-                window.location.href = "index.html"; // Weiterleitung zur Startseite
+                window.location.href = "../index.html"; // Weiterleitung zur Startseite
             } else {
                 timeLeft--;
                 setTimeout(updateCountdown, 1000);
@@ -33,7 +33,7 @@
         <p>Oops! You don't have the necessary permissions to view this page.</p>
         <p>If you believe this is an error, please contact the administrator.</p>
         <p>You will be redirected to the homepage in <span id="countdown" class="countdown-glow">20</span> seconds.</p>
-        <a href="index.html" class="btn">Back to Home</a>
+        <a href="../index.html" class="btn">Back to Home</a>
     </div>
 
     <style>
