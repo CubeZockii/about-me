@@ -214,7 +214,7 @@ progress::-moz-progress-bar {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
-    width: 30%; /* 3 Projekte pro Reihe */
+    width: 35%; /* 3 Projekte pro Reihe */
     min-width: 280px;
 }
 
