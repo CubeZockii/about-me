@@ -225,7 +225,7 @@ progress::-moz-progress-bar {
 
 .project-item img {
     width: 100%;
-    max-height: 300px; /* Größere Bilder */
+    max-height: 370px; /* Größere Bilder */
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 12px;
