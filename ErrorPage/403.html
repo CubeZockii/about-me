@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>403 - Access Denied</title>
-    <link rel="stylesheet" href="./CSS/styles.css">
-    <script defer src="./JS/animations.js"></script>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <script defer src="../JS/animations.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         let timeLeft = 20; // Sekunden bis zur Weiterleitung
@@ -39,7 +39,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #000000, #660000);
+            background: linear-gradient(to bottom, #000000, #1a1a1a, #333333);
             color: #ffffff;
             text-align: center;
             display: flex;
@@ -52,11 +52,11 @@
         .container {
             width: 90%;
             max-width: 350px;
-            background: linear-gradient(135deg,rgb(116, 16, 16), #660000, #330000); /* Exakter 3-Farben-Farbverlauf */
+            background: linear-gradient(135deg, #000000, #1a1a1a, #333333); /* Exakter 3-Farben-Farbverlauf */
             padding: 30px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 6px 15px rgba(255, 50, 50, 0.4);
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(10px); /* Glassmorphismus */
             animation: fadeIn 1s ease-in-out forwards;
         }
@@ -64,7 +64,7 @@
         h1 {
             font-size: 4rem;
             font-weight: 600;
-            background: linear-gradient(90deg, #ff5555, #cc0000);
+            background: linear-gradient(90deg, #1a1a1a, #333333,#ffffff);
             background-clip: border-box;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -83,28 +83,28 @@
             font-size: 1.2rem;
             font-weight: bold;
             color: #fff;
-            background: linear-gradient(90deg, #ff5555, #cc0000);
+            background: linear-gradient(90deg, #000000, #1a1a1a, #333333);
             border-radius: 8px;
             text-decoration: none;
             transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(97, 97, 97, 0.3);
         }
 
         .btn:hover {
-            background: linear-gradient(90deg, #ff7777, #dd2222);
+            background: linear-gradient(90deg, #1a1a1a, #333333);
             transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 6px 15px rgba(90, 90, 90, 0.5);
         }
 
         .icon-glow {
-            color: #540000;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            color: #333232;
+            text-shadow: 0 0 10px rgba(31, 28, 28, 0.8);
         }
 
         .countdown-glow {
             font-weight: bold;
-            color: #ff9999;
-            text-shadow: 0 0 8px rgba(255, 100, 100, 0.8);
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
         }
 
         @keyframes fadeIn {

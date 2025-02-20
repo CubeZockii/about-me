@@ -4,8 +4,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #000000, #660000, #220000);
-    color: #ffffff;
+    background: linear-gradient(to bottom, #000000, #1a1a1a, #333333);
+    color: #dcdcdc;
     overflow-x: hidden;
 }
 
@@ -29,7 +29,7 @@ header {
 h1 {
     font-size: 3rem;
     font-weight: 600;
-    background: linear-gradient(90deg, #ff4d4d, #ff0000, #660000);
+    background: linear-gradient(90deg, #888888, #bbbbbb, #ffffff);
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -48,28 +48,27 @@ p {
 }
 
 .image {
-    width: 200px; /* Durchmesser des Kreises */
-    height: 200px; /* Höhe entspricht der Breite für einen perfekten Kreis */
-    border-radius: 50%; /* Macht das Element rund */
-    border: 3px solid #ffffff; /* Weißer Rand um das Bild */
-    overflow: hidden; /* Versteckt den Teil des Bildes, der außerhalb des Kreises liegt */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2); /* Optional: Schatteneffekt */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
 }
 
 .image img {
     width: auto;
     height: 100%;
-    object-fit: cover; /* Bild füllt den Container, ohne das Seitenverhältnis zu verändern */
-    transition: transform 0.3s ease-in-out; /* Sanfter Übergang für den Hover-Effekt */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
 }
 
 .image:hover img {
-    transform: scale(1.1); /* Vergrößert das Bild leicht beim Darüberfahren mit der Maus */
+    transform: scale(1.1);
 }
-
 
 /* Skills Section */
 .skills {
@@ -81,7 +80,7 @@ p {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
-    background: linear-gradient(90deg, #ff4d4d, #ff0000, #660000);
+    background: linear-gradient(90deg, #aaaaaa, #ffffff, #cccccc);
     background-clip: border-box;
     -webkit-background-clip: text;
 }
@@ -137,12 +136,12 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: linear-gradient(to right, #ff4d4d, #660000, #220000);
+    background: linear-gradient(to right, #aaaaaa, #666666, #333333);
     border-radius: 5px;
 }
 
 progress::-moz-progress-bar {
-    background: linear-gradient(to right, #ff4d4d, #660000, #220000);
+    background: linear-gradient(to right, #aaaaaa, #666666, #333333);
     border-radius: 5px;
 }
 
@@ -159,7 +158,7 @@ progress::-moz-progress-bar {
 }
 
 .social-link:hover {
-    color: #ff4d4d;
+    color: #aaaaaa;
     transform: scale(1.2);
 }
 
@@ -214,7 +213,7 @@ progress::-moz-progress-bar {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
-    width: 35%; /* 3 Projekte pro Reihe */
+    width: 40%;
     min-width: 280px;
 }
 
@@ -225,7 +224,7 @@ progress::-moz-progress-bar {
 
 .project-item img {
     width: 100%;
-    max-height: 370px; /* Größere Bilder */
+    max-height: 600px;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 12px;
@@ -233,7 +232,7 @@ progress::-moz-progress-bar {
 }
 
 .project-item h3 {
-    color: #ffffff; /* Gelb aus deinem Design */
+    color: #ffffff;
     margin: 12px 0;
     font-size: 1.6rem;
 }
@@ -255,7 +254,7 @@ progress::-moz-progress-bar {
 
 @media (max-width: 1024px) {
     .project-item {
-        width: 45%; /* 2 Projekte pro Reihe bei mittelgroßen Bildschirmen */
+        width: 45%;
     }
 }
 
@@ -265,6 +264,6 @@ progress::-moz-progress-bar {
         align-items: center;
     }
     .project-item {
-        width: 90%; /* 1 Projekt pro Reihe auf kleinen Bildschirmen */
+        width: 90%;
     }
 }
