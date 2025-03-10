@@ -4,8 +4,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #000000, #1a1a1a, #333333);
-    color: #dcdcdc;
+    background: linear-gradient(to bottom, #000000, #191919, #333333);
+    color: #919191;
     overflow-x: hidden;
 }
 
@@ -29,7 +29,7 @@ header {
 h1 {
     font-size: 3rem;
     font-weight: 600;
-    background: linear-gradient(90deg, #888888, #bbbbbb, #ffffff);
+    background: linear-gradient(90deg, #919191, #0061d5, #ffffff);
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -51,12 +51,12 @@ p {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 3px solid #ffffff;
+    border: 3px solid #0061d5;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 97, 213, 0.5);
 }
 
 .image img {
@@ -80,7 +80,7 @@ p {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
-    background: linear-gradient(90deg, #aaaaaa, #ffffff, #cccccc);
+    background: linear-gradient(90deg, #919191, #0061d5, #ffffff);
     background-clip: border-box;
     -webkit-background-clip: text;
 }
@@ -93,7 +93,7 @@ p {
 }
 
 .skill-item {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 97, 213, 0.1);
     padding: 15px;
     border-radius: 10px;
     font-size: 1rem;
@@ -103,7 +103,7 @@ p {
     justify-content: center;
     gap: 10px;
     transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 97, 213, 0.2);
 }
 
 .skill-item i {
@@ -112,9 +112,9 @@ p {
 }
 
 .skill-item:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 97, 213, 0.3);
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 97, 213, 0.5);
 }
 
 .skill-item:hover i {
@@ -136,12 +136,12 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: linear-gradient(to right, #aaaaaa, #666666, #333333);
+    background: linear-gradient(to right, #919191, #0061d5, #333333);
     border-radius: 5px;
 }
 
 progress::-moz-progress-bar {
-    background: linear-gradient(to right, #aaaaaa, #666666, #333333);
+    background: linear-gradient(to right, #919191, #0061d5, #333333);
     border-radius: 5px;
 }
 
@@ -153,12 +153,12 @@ progress::-moz-progress-bar {
 .social-link {
     font-size: 1.6rem;
     margin: 0 10px;
-    color: #ffffff;
+    color: #0061d5;
     transition: transform 0.3s, color 0.3s;
 }
 
 .social-link:hover {
-    color: #aaaaaa;
+    color: #919191;
     transform: scale(1.2);
 }
 
@@ -207,7 +207,7 @@ progress::-moz-progress-bar {
 }
 
 .project-item {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 97, 213, 0.1);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -232,13 +232,13 @@ progress::-moz-progress-bar {
 }
 
 .project-item h3 {
-    color: #ffffff;
+    color: #0061d5;
     margin: 12px 0;
     font-size: 1.6rem;
 }
 
 .project-item p {
-    color: #ccc;
+    color: #919191;
     font-size: 1rem;
 }
 
@@ -249,7 +249,7 @@ progress::-moz-progress-bar {
 
 .project-item:hover img {
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 97, 213, 0.2);
 }
 
 @media (max-width: 1024px) {
