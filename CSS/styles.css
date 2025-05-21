@@ -91,8 +91,8 @@ body {
 
     canvas {
       width: 100% !important;
-      max-width: 600px;
-      height: 275px !important;
+      max-width: 550px;
+      height: 250px !important;
       background: #fff;
       padding: 20px;
       border-radius: 16px;
@@ -120,7 +120,7 @@ body {
 
     .project-item img {
       width: 100%;
-      height: 160px;
+      height: 400px;
       object-fit: cover;
       border-bottom: 1px solid #ddd;
     }
@@ -154,4 +154,20 @@ body {
 
     .social-link:hover {
       color: #7e57c2;
+    }
+    
+    .fade-in,
+    .slide-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .slide-in {
+      transform: translateX(-30px);
+    }
+
+    .visible {
+      opacity: 1;
+      transform: translateY(0) translateX(0);
     }
