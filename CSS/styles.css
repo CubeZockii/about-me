@@ -119,13 +119,13 @@ canvas {
 .project-item {
     background: #f3f0fb;
     padding: 14px;
-    border-radius: 16px;
+    border-radius: 12px;
     text-align: center;
     overflow: hidden;
     width: 40%;
     min-width: 280px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .project-item:hover {
