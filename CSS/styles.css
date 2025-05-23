@@ -90,7 +90,6 @@ body {
     }
 
     canvas {
-      text-align: center;
       width: 100% !important;
       max-width: 550px;
       height: 250px !important;
@@ -108,8 +107,7 @@ body {
 
     .project-item {
       background: #f3f0fb;
-      border-radius: 16px;
-      width: 150px;    
+      border-radius: 16px; 
       overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
