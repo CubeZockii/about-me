@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // Ensure it's visible at the very top if not already hidden
             if (window.scrollY === 0 && !scrollDownIndicator.classList.contains('hidden-by-scroll')) {
-                 scrollDownIndicator.classList.remove('hidden-by-scroll'); // Should already be the case
-                 scrolledPastHero = false;
+                scrollDownIndicator.classList.remove('hidden-by-scroll'); // Should already be the case
+                scrolledPastHero = false;
             }
         }
     };
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 !section.classList.contains('slide-in-left') &&
                 !section.classList.contains('slide-in-right') &&
                 !section.classList.contains('visible') // Check if already made visible by other means
-                ) {
+            ) {
                 section.classList.add('fade-in'); // Add class for observer to pick up
                 animationObserver.observe(section);
             }
@@ -215,9 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fallback for older browsers or if no elements to animate
         animatedElements.forEach(el => el.classList.add('visible'));
         sections.forEach(section => {
-             if (!section.classList.contains('visible')) {
+            if (!section.classList.contains('visible')) {
                 section.classList.add('visible');
-             }
+            }
         });
         console.info("IntersectionObserver not supported or no elements to animate with it. Elements made visible by default.");
     }
@@ -257,35 +257,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Custom Cursor Logic ---
-    if (cursorDot && cursorCircle) {
+    const customCursorDot = document.querySelector('.custom-cursor-dot');
+    const customCursorCircle = document.querySelector('.custom-cursor-circle');
+
+    if (customCursorDot && customCursorCircle) {
+        let mouseX = 0, mouseY = 0;
+        let dotX = 0, dotY = 0;
+        let circleX = 0, circleY = 0;
+        const dotDelay = 5;
+        const circleDelay = 8;
+
         document.addEventListener('mousemove', e => {
-            // Position the dot directly at the cursor
-            cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-
-            // Position the circle to follow with a slight delay (achieved via CSS transition)
-            cursorCircle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        // Cursor click effect
+        function animateCursor() {
+            dotX += (mouseX - dotX) / dotDelay;
+            dotY += (mouseY - dotY) / dotDelay;
+            customCursorDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%) ${customCursorDot.classList.contains('text-mode') ? 'translateY(-2px)' : ''} ${customCursorDot.classList.contains('clicking') ? 'scale(0.5)' : ''}`;
+
+            circleX += (mouseX - circleX) / circleDelay;
+            circleY += (mouseY - circleY) / circleDelay;
+            customCursorCircle.style.transform = `translate(${circleX}px, ${circleY}px) translate(-50%, -50%) ${customCursorCircle.classList.contains('text-mode') ? 'scale(0)' : ''} ${customCursorCircle.classList.contains('clicking') ? 'scale(0.7)' : ''}`;
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Mouse click effects
         document.addEventListener('mousedown', () => {
-            cursorCircle.classList.add('clicking');
-        });
-        document.addEventListener('mouseup', () => {
-            cursorCircle.classList.remove('clicking');
+            customCursorDot.classList.add('clicking');
+            customCursorCircle.classList.add('clicking');
         });
 
-        // Cursor hover effect for interactive elements
+        document.addEventListener('mouseup', () => {
+            customCursorDot.classList.remove('clicking');
+            customCursorCircle.classList.remove('clicking');
+        });
+
+        // Hover effects for interactive elements
         const interactiveElements = document.querySelectorAll(
-            'a, button, .clickable, input[type="submit"], input[type="button"], [role="button"]'
+            'a, button, .clickable, input[type="submit"], input[type="button"], [role="button"], .submit-button, .form-input, .form-textarea'
         );
+
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorCircle.classList.add('link-hover');
-                // cursorDot.classList.add('link-hover'); // Optional: if dot also changes
+                if (el.classList.contains('form-input') || el.classList.contains('form-textarea')) {
+                    customCursorDot.classList.add('text-mode');
+                    customCursorCircle.classList.add('text-mode');
+                } else {
+                    customCursorDot.classList.add('link-hover');
+                    customCursorCircle.classList.add('link-hover');
+                }
             });
+
             el.addEventListener('mouseleave', () => {
-                cursorCircle.classList.remove('link-hover');
-                // cursorDot.classList.remove('link-hover');
+                customCursorDot.classList.remove('text-mode', 'link-hover');
+                customCursorCircle.classList.remove('text-mode', 'link-hover');
             });
         });
 
@@ -293,21 +322,21 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Custom cursor elements (.custom-cursor-dot or .custom-cursor-circle) not found. Cursor effects disabled.');
     }
 
-    // --- Initial Calls & Event Listeners for Scroll-Dependent Functions ---
-    const onScroll = () => {
-        handleHeaderScroll();
-        updateActiveNavLink();
-        handleBackToTopButton();
-        handleScrollIndicator();
-    };
-
-    // Call once on load
+// --- Initial Calls & Event Listeners for Scroll-Dependent Functions ---
+const onScroll = () => {
     handleHeaderScroll();
     updateActiveNavLink();
     handleBackToTopButton();
     handleScrollIndicator();
+};
 
-    // Add scroll event listener
-    window.addEventListener('scroll', onScroll, { passive: true }); // Use passive listener for scroll performance
+// Call once on load
+handleHeaderScroll();
+updateActiveNavLink();
+handleBackToTopButton();
+handleScrollIndicator();
+
+// Add scroll event listener
+window.addEventListener('scroll', onScroll, { passive: true }); // Use passive listener for scroll performance
 
 }); // End of DOMContentLoaded
