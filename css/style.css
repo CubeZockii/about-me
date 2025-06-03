@@ -13,6 +13,11 @@ html {
     -ms-overflow-style: none;
 }
 
+.discord-widget {
+  display: inline-block;
+  margin-top: 20px;
+}
+
 html::-webkit-scrollbar {
     display: none;
 }
