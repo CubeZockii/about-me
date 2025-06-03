@@ -13,9 +13,14 @@ html {
     -ms-overflow-style: none;
 }
 
-.discord-widget {
-  display: inline-block;
+.widget-container {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
+}
+
+.discord-widget {
+  display: inline-block; /* or block, depending on the widget type */
 }
 
 html::-webkit-scrollbar {
