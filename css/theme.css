@@ -1,53 +1,35 @@
+/* --- THEME VARIABLES --- */
 :root {
-    --bg-primary-dark: #0A0F1A;
-    --bg-secondary-dark: #121826;
-    --bg-tertiary-dark: #1F2937;
-    --bg-card-dark: #161E2D;
-    --bg-loader-dark: #070B12;
-    --bg-sidebar-dark: rgba(18, 24, 38, 0.95);
-    --bg-overlay-dark: rgba(0, 0, 0, 0.7);
+    /* Darker grey/black theme */
+    --bg-primary-dark: #0d1117;
+    --bg-secondary-dark: #161b22;
+    --bg-tertiary-dark: #21262d;
+    --bg-card-dark: #10141a;
+    --bg-loader: #010409;
+    --bg-loader-dark: #010409;
+    --bg-sidebar-dark: rgba(22, 27, 34, 0.95);
+    --bg-overlay-dark: rgba(0, 0, 0, 0.75);
 
-    --text-primary-dark: #E5E7EB;
-    --text-secondary-dark: #9CA3AF;
-    --text-headings-dark: #F9FAFB;
+    --text-primary-dark: #c9d1d9;
+    --text-secondary-dark: #8b949e;
+    --text-headings-dark: #e6edf3;
+    --text-loader: #f0f6fc;
     --text-loader-dark: var(--accent-primary-dark);
 
-    --accent-primary-dark: #8B5CF6;
-    --accent-secondary-dark: #60A5FA;
-    --accent-glow-hero-start-dark: rgba(139, 92, 246, 0.6);
-    --accent-glow-hero-mid-dark: rgba(96, 165, 250, 0.4);
-    --accent-glow-hero-end-dark: rgba(10, 15, 26, 0);
-    --accent-glow-skill-card-dark: rgba(139, 92, 246, 0.5);
-    --accent-glow-project-card-dark: rgba(96, 165, 250, 0.3);
+    /* --- MORE VIBRANT ACCENT COLORS --- */
+    --accent-primary-dark: #a855f7; /* Vibrant Purple */
+    --accent-secondary-dark: #22d3ee; /* Vibrant Cyan */
 
-    --border-color-dark: #374151;
-    --shadow-color-dark: rgba(0, 0, 0, 0.6);
+    /* Adjusted glow effects to match new accents */
+    --accent-glow-hero-start-dark: rgba(168, 85, 247, 0.6);
+    --accent-glow-hero-mid-dark: rgba(34, 211, 238, 0.4);
+    --accent-glow-hero-end-dark: rgba(13, 17, 23, 0);
+    --accent-glow-skill-card-dark: rgba(168, 85, 247, 0.45);
+    --accent-glow-project-card-dark: rgba(34, 211, 238, 0.3);
+
+    --border-color-dark: #30363d;
+    --shadow-color-dark: rgba(1, 4, 9, 0.7);
     --icon-color-dark: var(--text-primary-dark);
-
-    --bg-primary-light: #F3F4F6;
-    --bg-secondary-light: #FFFFFF;
-    --bg-tertiary-light: #E5E7EB;
-    --bg-card-light: #FFFFFF;
-    --bg-loader-light: #E5E7EB;
-    --bg-sidebar-light: rgba(255, 255, 255, 0.95);
-    --bg-overlay-light: rgba(0, 0, 0, 0.5);
-
-    --text-primary-light: #374151;
-    --text-secondary-light: #6B7280;
-    --text-headings-light: #111827;
-    --text-loader-light: var(--accent-primary-light);
-
-    --accent-primary-light: #6D28D9;
-    --accent-secondary-light: #2563EB;
-    --accent-glow-hero-start-light: rgba(109, 40, 217, 0.5);
-    --accent-glow-hero-mid-light: rgba(37, 99, 235, 0.3);
-    --accent-glow-hero-end-light: rgba(243, 244, 246, 0);
-    --accent-glow-skill-card-light: rgba(109, 40, 217, 0.4);
-    --accent-glow-project-card-light: rgba(37, 99, 235, 0.25);
-
-    --border-color-light: #D1D5DB;
-    --shadow-color-light: rgba(0, 0, 0, 0.15);
-    --icon-color-light: var(--text-primary-light);
 
     --font-primary: 'Orbitron', 'Audiowide', sans-serif;
     --font-secondary: 'Share Tech Mono', 'Roboto Mono', monospace;
@@ -69,67 +51,15 @@
     --border-radius-large: 12px;
     --border-radius-card: 10px;
     --border-radius-button: 6px;
-}
 
-body {
-    background-color: var(--bg-primary, var(--bg-primary-dark));
-    color: var(--text-primary, var(--text-primary-dark));
-    font-family: var(--font-secondary);
-    transition: background-color var(--transition-speed-normal) var(--transition-timing),
-                color var(--transition-speed-normal) var(--transition-timing);
-}
-
-body.light-theme {
-    --bg-primary: var(--bg-primary-light);
-    --bg-secondary: var(--bg-secondary-light);
-    --bg-tertiary: var(--bg-tertiary-light);
-    --bg-card: var(--bg-card-light);
-    --bg-loader: var(--bg-loader-light);
-    --bg-sidebar: var(--bg-sidebar-light);
-    --bg-overlay: var(--bg-overlay-light);
-    --text-primary: var(--text-primary-light);
-    --text-secondary: var(--text-secondary-light);
-    --text-headings: var(--text-headings-light);
-    --text-loader: var(--text-loader-light);
-    --accent-primary: var(--accent-primary-light);
-    --accent-secondary: var(--accent-secondary-light);
-    --accent-glow-hero-start: var(--accent-glow-hero-start-light);
-    --accent-glow-hero-mid: var(--accent-glow-hero-mid-light);
-    --accent-glow-hero-end: var(--accent-glow-hero-end-light);
-    --accent-glow-skill-card: var(--accent-glow-skill-card-light);
-    --accent-glow-project-card: var(--accent-glow-project-card-light);
-    --border-color: var(--border-color-light);
-    --shadow-color: var(--shadow-color-light);
-    --icon-color: var(--icon-color-light);
-}
-
-.fab, .fas, .far {
-    color: var(--icon-color, var(--icon-color-dark));
-    transition: color var(--transition-speed-normal) var(--transition-timing);
-    vertical-align: middle;
-}
-
-#theme-toggle-button .sun { display: none; }
-#theme-toggle-button .moon { display: inline-block; }
-
-body.light-theme #theme-toggle-button .sun { display: inline-block; }
-body.light-theme #theme-toggle-button .moon { display: none; }
-
-.scroll-down-indicator svg {
-    stroke: var(--icon-color, var(--icon-color-dark));
-    fill: var(--icon-color, var(--icon-color-dark));
-    opacity: 0.7;
-    transition: stroke var(--transition-speed-normal), fill var(--transition-speed-normal), opacity var(--transition-speed-normal);
-}
-.scroll-down-indicator:hover svg {
-    opacity: 1;
-}
-.scroll-down-indicator .scroller-dot {
-    animation: scrollDotAnimation 2s infinite ease-in-out;
-}
-
-@keyframes scrollDotAnimation {
-    0% { transform: translateY(0px); opacity: 1; }
-    50% { transform: translateY(10px); opacity: 0.3; }
-    100% { transform: translateY(0px); opacity: 1; }
+    /* Discord Widget Specific */
+    --discord-bg: #232428;
+    --discord-bg-secondary: #2B2D31;
+    --discord-bg-tertiary: #313338;
+    --discord-text: #DBDEE1;
+    --discord-text-muted: #949BA4;
+    --discord-header-primary: #F2F3F5;
+    --discord-interactive-normal: #B5BAC1;
+    --discord-interactive-hover: #DBDEE1;
+    --discord-border: rgba(255, 255, 255, 0.06);
 }
