@@ -1,65 +1,79 @@
-/* --- THEME VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
 :root {
-    /* Darker grey/black theme */
-    --bg-primary-dark: #0d1117;
-    --bg-secondary-dark: #161b22;
-    --bg-tertiary-dark: #21262d;
-    --bg-card-dark: #10141a;
-    --bg-loader: #010409;
-    --bg-loader-dark: #010409;
-    --bg-sidebar-dark: rgba(22, 27, 34, 0.95);
-    --bg-overlay-dark: rgba(0, 0, 0, 0.75);
+    --bg-color: #0d1117;
+    --bg-color-light: #161b22;
+    --bg-color-glass: #161b22;
 
-    --text-primary-dark: #c9d1d9;
-    --text-secondary-dark: #8b949e;
-    --text-headings-dark: #e6edf3;
-    --text-loader: #f0f6fc;
-    --text-loader-dark: var(--accent-primary-dark);
+    --primary-text-color: #f0f0f5;
+    --secondary-text-color: #a0a8b4;
 
-    /* --- MORE VIBRANT ACCENT COLORS --- */
-    --accent-primary-dark: #a855f7; /* Vibrant Purple */
-    --accent-secondary-dark: #22d3ee; /* Vibrant Cyan */
+    --accent-color-1: #30C5FF;
+    --accent-color-2: #16D98B;
+    --accent-color-3: #C879FF;
+    --accent-color-4: #2C3E50;
+    --accent-color-5: #4CA1AF;
+    --accent-color-6: #0D3B5E;
+    --accent-color-7: #E8F4F8;
+            
+    --accent-gradient-2: linear-gradient(90deg,
+            var(--accent-color-4),
+            var(--accent-color-5));
+            
+    --accent-gradient-3: linear-gradient(90deg,
+            var(--accent-color-4),
+            var(--accent-color-7),
+            var(--accent-color-6));
+            
 
-    /* Adjusted glow effects to match new accents */
-    --accent-glow-hero-start-dark: rgba(168, 85, 247, 0.6);
-    --accent-glow-hero-mid-dark: rgba(34, 211, 238, 0.4);
-    --accent-glow-hero-end-dark: rgba(13, 17, 23, 0);
-    --accent-glow-skill-card-dark: rgba(168, 85, 247, 0.45);
-    --accent-glow-project-card-dark: rgba(34, 211, 238, 0.3);
+    --discord-online: #3ba55d;
+    --discord-idle: #faa61a;
+    --discord-dnd: #f04747;
+    --discord-offline: #747f8d;
+    --discord-spotify: #1db954;
+    --discord-bg-dark: #121315;
+    --discord-text-dim: #b9bbbe;
 
-    --border-color-dark: #30363d;
-    --shadow-color-dark: rgba(1, 4, 9, 0.7);
-    --icon-color-dark: var(--text-primary-dark);
+    --glass-bg: rgba(22, 27, 34, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.25);
+    --glass-shadow-hover: rgba(48, 197, 255, 0.15), rgba(200, 121, 255, 0.15);
 
-    --font-primary: 'Orbitron', 'Audiowide', sans-serif;
-    --font-secondary: 'Share Tech Mono', 'Roboto Mono', monospace;
-    --font-mono: 'Roboto Mono', monospace;
-    --font-loader: 'Audiowide', 'Orbitron', sans-serif;
+    --body-font: 'Poppins', sans-serif;
+    --font-h1: 3.5rem;
+    --font-h2: 2.25rem;
+    --font-h3: 1.25rem;
+    --font-normal: 1rem;
+    --font-small: 0.875rem;
+    --font-tiny: 0.75rem;
 
-    --transition-speed-fast: 0.15s;
-    --transition-speed-normal: 0.25s;
-    --transition-speed-medium: 0.4s;
-    --transition-speed-slow: 0.6s;
-    --transition-timing: ease-in-out;
-    --transition-timing-bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    --header-height: 3.5rem;
+    --border-radius: 1rem;
+    --section-padding: 5rem 0 2rem;
 
-    --spacing-unit: 8px;
-    --header-height: 70px;
-    --max-width-container: 1200px;
-    --border-radius-small: 4px;
-    --border-radius-medium: 8px;
-    --border-radius-large: 12px;
-    --border-radius-card: 10px;
-    --border-radius-button: 6px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
-    /* Discord Widget Specific */
-    --discord-bg: #232428;
-    --discord-bg-secondary: #2B2D31;
-    --discord-bg-tertiary: #313338;
-    --discord-text: #DBDEE1;
-    --discord-text-muted: #949BA4;
-    --discord-header-primary: #F2F3F5;
-    --discord-interactive-normal: #B5BAC1;
-    --discord-interactive-hover: #DBDEE1;
-    --discord-border: rgba(22, 26, 33, 1);
+    --cube-color: #ffffff;
+
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+@media screen and (max-width: 862px) {
+    :root {
+        --font-h1: 2.5rem;
+        --font-h2: 1.75rem;
+        --font-h3: 1.125rem;
+        --font-normal: 0.938rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --font-h1: 2.5rem;
+        --font-h2: 1.75rem;
+        --font-h3: 1.125rem;
+        --font-normal: 0.938rem;
+    }
 }
