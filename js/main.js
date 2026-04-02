@@ -1,131 +1,524 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- GLOBAL ELEMENTS ---
+
+    const loader = document.getElementById('loader');
+    const progressBarFill = document.getElementById('loader-progress-fill');
     const body = document.body;
-    const mainHeader = document.getElementById('main-header');
-    const backToTopButton = document.getElementById('back-to-top');
-    const sections = document.querySelectorAll('main section[id]');
-    const allNavLinks = document.querySelectorAll('#main-nav-desktop a, .sidebar-nav a');
 
-    // --- DYNAMIC FAVICON FROM DISCORD ---
-    const setDynamicFavicon = async () => {
-        const favicon = document.getElementById('dynamic-favicon');
-        if (!favicon) return;
-
-        // Your Discord User ID.
-        // This is used to fetch your profile avatar.
-        const DISCORD_USER_ID = '804361392344793119';
-        const fallbackIcon = 'assets/images/profile.jpg'; // Default icon if API fails
-
-        try {
-            // Using Lanyard API to fetch Discord user data
-            const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
-            if (!response.ok) throw new Error('Lanyard API request failed');
-
-            const { data } = await response.json();
-
-            if (data && data.discord_user && data.discord_user.avatar) {
-                const avatarHash = data.discord_user.avatar;
-                const avatarUrl = `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${avatarHash}.png?size=128`;
-                favicon.href = avatarUrl;
-            } else {
-                favicon.href = fallbackIcon;
-            }
-        } catch (error) {
-            console.error("Failed to fetch Discord avatar, using fallback icon.", error);
-            favicon.href = fallbackIcon;
-        }
+    const isTouchDevice = () => {
+        return ('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0);
     };
 
-    setDynamicFavicon(); // Call the function to set the favicon on page load
+    if (isTouchDevice()) {
+        body.classList.add('touch-device');
+    }
 
+    if (loader && progressBarFill) {
+        let currentProgress = 0;
+        const totalTime = 15000;
+        const intervalTime = 100;
+        const steps = totalTime / intervalTime;
+        const progressPerStep = 95 / steps;
 
-    // --- LOADER ---
-    window.addEventListener('load', () => {
-        const loader = document.getElementById('loader');
-        if (loader) {
+        const progressInterval = setInterval(() => {
+            currentProgress += progressPerStep;
+            if (currentProgress >= 95) {
+                currentProgress = 95;
+                clearInterval(progressInterval);
+            }
+            progressBarFill.style.width = `${currentProgress}%`;
+        }, intervalTime);
+
+        window.addEventListener('load', () => {
+            clearInterval(progressInterval);
+            progressBarFill.style.width = '100%';
+
             setTimeout(() => {
-                loader.classList.add('hidden');
-                body.classList.remove('loading');
-            }, 300);
-        }
-    });
+                loader.classList.add('loader-hidden');
 
-    // --- HEADER, SCROLLSPY, & BACK-TO-TOP ---
-    const handleScroll = () => {
-        const scrollPosition = window.scrollY;
+                body.classList.remove('loading-active');
 
-        if (mainHeader) {
-            if (scrollPosition > 50) mainHeader.classList.add('scrolled');
-            else mainHeader.classList.remove('scrolled');
-        }
-
-        if (backToTopButton) {
-            if (scrollPosition > 300) backToTopButton.classList.add('visible');
-            else backToTopButton.classList.remove('visible');
-        }
-
-        let currentSectionId = '';
-        const offset = mainHeader ? mainHeader.offsetHeight + 40 : 110;
-        sections.forEach(section => {
-            if (scrollPosition >= section.offsetTop - offset) {
-                currentSectionId = section.getAttribute('id');
-            }
+                const typedOutputElement = document.getElementById('typed-output');
+                if (typedOutputElement) {
+                    new Typed(typedOutputElement, {
+                        strings: ["a Creative Developer", "a Self-Taught Developer", "a Front-End Engineer", "From Germany", "a Frontend Specialist", "an Enthusiastic Learner", "a Problem Solver"],
+                        typeSpeed: 70,
+                        backSpeed: 40,
+                        backDelay: 1500,
+                        loop: true,
+                        smartBackspace: true
+                    });
+                }
+            }, 500);
         });
+    }
 
-        allNavLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}` && !link.classList.contains('contact-trigger')) {
-                link.classList.add('active');
+    const FORMSPREE_ID = 'xyzjgpdl';
+    const formspreeURL = `https://formspree.io/f/${FORMSPREE_ID}`;
+
+    const header = document.getElementById('header');
+    if (header) {
+        function scrollHeader() {
+            if (window.scrollY >= 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
+        }
+        window.addEventListener('scroll', scrollHeader);
+    }
+
+    const navMenu = document.getElementById('nav-menu');
+    const navToggle = document.getElementById('nav-toggle');
+    const navClose = document.getElementById('nav-close');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.add('show-menu');
         });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    // --- SIDEBAR ---
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const openSidebarBtn = document.getElementById('sidebar-menu-toggle');
-    const closeSidebarBtn = document.getElementById('sidebar-close-button');
-
-    const toggleSidebar = () => {
-        if (sidebar) sidebar.classList.toggle('open');
-        if (overlay) overlay.classList.toggle('active');
-        body.classList.toggle('sidebar-open');
-    };
-
-    if (openSidebarBtn) openSidebarBtn.addEventListener('click', toggleSidebar);
-    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
-    if (overlay) overlay.addEventListener('click', toggleSidebar);
-    allNavLinks.forEach(link => {
+    }
+    if (navClose) {
+        navClose.addEventListener('click', () => {
+            navMenu.classList.remove('show-menu');
+        });
+    }
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (sidebar && sidebar.classList.contains('open')) {
-                toggleSidebar();
-            }
+            navMenu.classList.remove('show-menu');
         });
     });
 
-    // --- SMOOTH SCROLL ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href && href.length > 1 && !this.classList.contains('contact-trigger')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    const headerOffset = mainHeader ? mainHeader.offsetHeight : 70;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('section-content')) {
+                    entry.target.classList.add('show');
+                }
+                if (entry.target.classList.contains('skill-bar-fill')) {
+                    entry.target.classList.add('filled');
                 }
             }
         });
+    }, {
+        threshold: 0.15
     });
 
-    // --- CUSTOM CURSOR ---
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    const cursorCircle = document.querySelector('.custom-cursor-circle');
+    const hiddenElements = document.querySelectorAll('.hidden.section-content');
+    hiddenElements.forEach((el) => observer.observe(el));
+    const skillBars = document.querySelectorAll('.skill-bar-fill.hidden');
+    skillBars.forEach((el) => observer.observe(el));
+
+
+    const sections = document.querySelectorAll('section[id]');
+    function scrollActive() {
+        const scrollY = window.pageYOffset;
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - (window.innerHeight * 0.4);
+            const sectionId = current.getAttribute('id');
+            const link = document.querySelector('.nav-link[href*=' + sectionId + ']');
+
+            if (link) {
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    link.classList.add('active-link');
+                } else {
+                    link.classList.remove('active-link');
+                }
+            }
+        });
+    }
+    window.addEventListener('scroll', scrollActive);
+
+    const contactModal = document.getElementById('contact-modal');
+    const openContactBtn = document.getElementById('open-contact-btn');
+    const closeContactBtn = document.getElementById('close-contact-btn');
+
+    const messageModal = document.getElementById('message-modal');
+    const messageModalText = document.getElementById('message-modal-text');
+    const messageModalIcon = document.getElementById('message-modal-icon');
+    const closeMessageBtn = document.getElementById('close-message-btn');
+    const closeMessageBtnAlt = document.getElementById('close-message-btn-alt');
+
+    const contactForm = document.getElementById('contact-form');
+    const submitButton = document.getElementById('submit-button');
+
+    const openModal = (modal) => {
+        if (!modal) return;
+        modal.classList.add('show');
+        document.body.classList.add('modal-open');
+    };
+    const closeModal = (modal) => {
+        if (!modal) return;
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+    };
+
+    if (openContactBtn) {
+        openContactBtn.addEventListener('click', () => openModal(contactModal));
+    }
+    if (closeContactBtn) {
+        closeContactBtn.addEventListener('click', () => closeModal(contactModal));
+    }
+    if (closeMessageBtn) {
+        closeMessageBtn.addEventListener('click', () => closeModal(messageModal));
+    }
+    if (closeMessageBtnAlt) {
+        closeMessageBtnAlt.addEventListener('click', () => closeModal(messageModal));
+    }
+
+    // Modal Background Click close
+    [contactModal, messageModal, document.getElementById('project-modal'), document.getElementById('skill-modal')].forEach(modal => {
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        }
+    });
+
+    const showMessage = (success, message) => {
+        messageModalText.textContent = message;
+        messageModalIcon.className = success ? 'bx bx-check-circle success' : 'bx bx-error-circle error';
+        openModal(messageModal);
+    };
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (FORMSPREE_ID === 'YOUR_ID_HERE') {
+                showMessage(false, "Form not set up. Please add Formspree ID in main.js.");
+                return;
+            }
+
+            const originalButtonText = submitButton.innerText;
+            submitButton.innerText = 'Sending...';
+            submitButton.disabled = true;
+
+            const formData = new FormData(contactForm);
+
+            fetch(formspreeURL, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    closeModal(contactModal);
+                    if (response.ok) {
+                        showMessage(true, "Thank you! Your message has been sent successfully.");
+                        contactForm.reset();
+                    } else {
+                        response.json().then(data => {
+                            const errorMsg = data.errors?.map(err => err.message).join(', ') || "Something went wrong.";
+                            showMessage(false, `Oops! ${errorMsg}`);
+                        });
+                    }
+                })
+                .catch(error => {
+                    closeModal(contactModal);
+                    showMessage(false, "Network error. Please try again later.");
+                })
+                .finally(() => {
+                    submitButton.innerText = originalButtonText;
+                    submitButton.disabled = false;
+                });
+        });
+    }
+
+    // ==========================================
+    // SKILL MODAL LOGIC
+    // ==========================================
+    const skillDescriptions = {
+        "Python": "Python is a versatile, high-level programming language known for its readability. I use it primarily for backend development, API creation, and building powerful Discord bots.",
+        "JavaScript": "JavaScript is the core language of the web. I use it to create highly dynamic and interactive front-end experiences like custom cursors, animations, and API integrations.",
+        "Flask": "Flask is a lightweight WSGI web framework for Python. It allows me to spin up secure and scalable backend architectures quickly and easily.",
+        "FastAPI": "FastAPI is a modern, ultra-fast web framework for Python. I use it when I need to build highly concurrent applications with automatic interactive API documentation.",
+        "MongoDB": "MongoDB is a powerful NoSQL database that stores data in flexible, JSON-like documents. I use it for applications that require rapid iteration and scalable storage.",
+        "MariaDB": "MariaDB is a fast and robust relational database. I implement it for structured data storage, ensuring high data integrity and complex querying capabilities.",
+        "GitHub": "GitHub is my go-to developer platform. I use it for version control, managing my open-source projects, and collaborating securely.",
+        "Nginx": "Nginx is a high-performance web server. I use it to serve my web applications, handle load balancing, and set up reverse proxies on my Linux servers.",
+        "Linux": "Linux is the foundation of my infrastructure. I rely on it heavily for securely deploying, managing, and maintaining my web applications and services."
+    };
+
+    const skillModal = document.getElementById('skill-modal');
+    const closeSkillBtn = document.getElementById('close-skill-btn');
+    const arsenalItems = document.querySelectorAll('.arsenal-item');
+
+    arsenalItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const skillName = item.textContent.trim();
+            const desc = skillDescriptions[skillName] || "More details about this skill are coming soon!";
+            document.getElementById('skill-modal-title').textContent = skillName;
+            document.getElementById('skill-modal-description').textContent = desc;
+            openModal(skillModal);
+        });
+    });
+
+    if (closeSkillBtn) {
+        closeSkillBtn.addEventListener('click', () => closeModal(skillModal));
+    }
+
+
+    // ==========================================
+    // DISCORD WIDGET LOGIC
+    // ==========================================
+    const userId = "804361392344793119";
+
+    const colorThief = new ColorThief();
+    const widgetContainer = document.getElementById('discord-widget-container');
+    const widgetContent = document.getElementById('widget-content');
+    const loaderOverlay = document.getElementById('loader-overlay');
+    const bannerEl = document.getElementById('widget-banner');
+    const avatarEl = document.getElementById('widget-avatar');
+    const usernameEl = document.getElementById('widget-username');
+    const discriminatorEl = document.getElementById('widget-discriminator');
+    const statusEl = document.getElementById('widget-status');
+    const aboutMeSection = document.getElementById('about-me-section');
+    const aboutMeEl = document.getElementById('widget-about-me');
+    const activitiesSection = document.getElementById('activities-section');
+    const activitiesContainerEl = document.getElementById('activities-container');
+    const statusIconEl = document.getElementById('status-icon');
+
+    let timerInterval = null;
+    let lastProfileUpdate = 0; // Tracks the last time we updated non-activity data
+
+    const formatTime = (ms) => {
+        const totalSeconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    const updateSpotifyTimers = (startTime, endTime, progressBar, elapsedText, remainingText) => {
+        const now = new Date().getTime();
+        const totalDuration = endTime - startTime;
+        const elapsed = now - startTime;
+        const remaining = endTime - now;
+
+        if (elapsed >= totalDuration) {
+            progressBar.style.width = '100%';
+            elapsedText.textContent = formatTime(totalDuration);
+            remainingText.textContent = formatTime(0);
+            return;
+        }
+
+        const progressPercentage = (elapsed / totalDuration) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+        elapsedText.textContent = formatTime(elapsed);
+        remainingText.textContent = `-${formatTime(remaining > 0 ? remaining : 0)}`;
+    };
+
+    const updateBannerColor = () => {
+        if (avatarEl.complete && avatarEl.naturalWidth > 0) {
+            try {
+                const palette = colorThief.getPalette(avatarEl, 2);
+                if (palette && palette.length >= 2) {
+                    const color1 = `rgb(${palette[0].join(',')})`;
+                    const color2 = `rgb(${palette[1].join(',')})`;
+                    bannerEl.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+                }
+            } catch (e) {
+                console.error("Error getting colors from avatar:", e);
+                bannerEl.style.background = 'linear-gradient(135deg, var(--accent-light-blue), var(--accent-blue)';
+            }
+        } else {
+            bannerEl.style.background = 'linear-gradient(135deg, var(--accent-light-blue), var(--accent-blue)';
+        }
+    };
+
+    if (avatarEl) {
+        avatarEl.addEventListener('load', updateBannerColor);
+        avatarEl.addEventListener('error', () => {
+            console.error("Failed to load avatar image.");
+            updateBannerColor();
+        });
+    }
+
+    const fetchDiscordData = async () => {
+        try {
+            const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+            if (!response.ok) {
+                throw new Error(`Lanyard API responded with status ${response.status}`);
+            }
+            const data = await response.json();
+
+            if (data.success && data.data) {
+                const user = data.data.discord_user;
+                const activities = data.data.activities;
+                const status = data.data.discord_status;
+                const aboutMe = data.data.kv?.about_me || data.data.about_me || (data.data.activities.find(act => act.type === 4) || {}).state || '';
+
+                if (!usernameEl) return;
+
+                const now = Date.now();
+                
+                // Only update heavy DOM elements (Profile Data) every 15 seconds to save resources
+                if (now - lastProfileUpdate >= 15000) {
+                    usernameEl.textContent = user.global_name || user.username;
+                    discriminatorEl.textContent = `@${user.username}`;
+
+                    const newAvatarSrc = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
+                    if (avatarEl.src !== newAvatarSrc) {
+                        avatarEl.src = newAvatarSrc;
+                    } else if (!bannerEl.style.background) {
+                        updateBannerColor();
+                    }
+
+                    statusEl.classList.remove('status-online', 'status-idle', 'status-dnd', 'status-offline');
+                    statusIconEl.className = 'fas';
+                    if (status === 'online') {
+                        statusEl.classList.add('status-online');
+                        statusIconEl.classList.add('fa-circle');
+                    } else if (status === 'idle') {
+                        statusEl.classList.add('status-idle');
+                        statusIconEl.classList.add('fa-moon');
+                    } else if (status === 'dnd') {
+                        statusEl.classList.add('status-dnd');
+                        statusIconEl.classList.add('fa-minus');
+                    } else {
+                        statusEl.classList.add('status-offline');
+                        statusIconEl.classList.add('fa-circle');
+                    }
+
+                    if (aboutMe && aboutMe.trim().length > 0) {
+                        aboutMeEl.textContent = aboutMe;
+                        aboutMeSection.style.display = 'block';
+                    } else {
+                        aboutMeEl.textContent = "";
+                        aboutMeSection.style.display = 'none';
+                    }
+                    
+                    lastProfileUpdate = now;
+                }
+
+                // ALWAYS update activities on every tick (2 seconds)
+                activitiesContainerEl.innerHTML = '';
+                activitiesSection.style.display = 'block';
+
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+
+                if (activities.length > 0) {
+                    activities.forEach(activity => {
+                        if (activity.type === 4) return; // Skip Custom Status as it's handled in "About me"
+                        
+                        const activityCard = document.createElement('div');
+                        activityCard.className = 'activity-card';
+                        
+                        let iconUrl = '';
+                        // Pre-generate the fallback so we can use it in the onerror attribute
+                        const encodedName = encodeURIComponent(activity.name || "App");
+                        const fallbackIconUrl = `https://ui-avatars.com/api/?name=${encodedName}&background=141b25&color=30C5FF&size=128&bold=true`;
+
+                        if (activity.assets && activity.assets.large_image) {
+                            if (activity.assets.large_image.startsWith('spotify:')) {
+                                iconUrl = `https://i.scdn.co/image/${activity.assets.large_image.substring(8)}`;
+                            } else if (activity.assets.large_image.startsWith('mp:external/')) {
+                                // External Discord Proxied image
+                                iconUrl = `https://media.discordapp.net/external/${activity.assets.large_image.replace('mp:external/', '')}`;
+                            } else {
+                                // Standard Discord asset
+                                iconUrl = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
+                            }
+                        } else if (activity.application_id) {
+                            // If no rich presence image exists, fetch the official Application/Game icon via DCDN
+                            iconUrl = `https://dcdn.dstn.to/app-icons/${activity.application_id}?size=128`;
+                        } else {
+                            // If there is no application ID at all, use the fallback
+                            iconUrl = fallbackIconUrl;
+                        }
+
+                        const detailsLine = activity.details && activity.state ? activity.details : '';
+                        const stateLine = activity.state || '';
+
+                        // Notice the onerror handler added to the img tag!
+                        activityCard.innerHTML = `
+                            <div class="activity-icon-container">
+                                <img class="activity-icon" src="${iconUrl}" onerror="this.onerror=null; this.src='${fallbackIconUrl}';" alt="Activity Icon">
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-name">${activity.name || 'N/A'}</div>
+                                <div class="small">${detailsLine || 'N/A'}</div>
+                                <div class="activity-state">${stateLine || ''}</div>
+                            </div>
+                        `;
+
+                        if (activity.name === 'Spotify' && activity.timestamps) {
+                            // ... (Keep your existing Spotify progress bar logic exactly the same here)
+                            const startTime = activity.timestamps.start;
+                            const endTime = activity.timestamps.end;
+                            const progressBarContainer = document.createElement('div');
+                            progressBarContainer.className = 'spotify-progress-bar-container';
+                            const progressBar = document.createElement('div');
+                            progressBar.className = 'spotify-progress-bar';
+                            progressBarContainer.appendChild(progressBar);
+
+                            const timestampsEl = document.createElement('div');
+                            timestampsEl.className = 'spotify-timestamps';
+                            const elapsedText = document.createElement('span');
+                            const remainingText = document.createElement('span');
+                            timestampsEl.appendChild(elapsedText);
+                            timestampsEl.appendChild(remainingText);
+
+                            activityCard.querySelector('.activity-details').appendChild(progressBarContainer);
+                            activityCard.querySelector('.activity-details').appendChild(timestampsEl);
+
+                            updateSpotifyTimers(startTime, endTime, progressBar, elapsedText, remainingText);
+                            timerInterval = setInterval(() => {
+                                updateSpotifyTimers(startTime, endTime, progressBar, elapsedText, remainingText);
+                            }, 1000);
+                        }
+                        activitiesContainerEl.appendChild(activityCard);
+                    });
+                } else {
+                    const noActivities = document.createElement('div');
+                    noActivities.className = 'about-me-content';
+                    noActivities.textContent = "Not currently doing any public activities.";
+                    activitiesContainerEl.appendChild(noActivities);
+                }
+            }
+        } catch (error) {
+            console.error("Failed to fetch Discord data:", error);
+            if (activitiesSection) activitiesSection.style.display = 'none';
+            if (aboutMeSection) aboutMeSection.style.display = 'none';
+        } finally {
+            if (loaderOverlay) loaderOverlay.style.display = 'none';
+            if (widgetContent) widgetContent.style.display = 'block';
+            if (widgetContainer) widgetContainer.classList.add('visible');
+        }
+    };
+
+    if (widgetContainer) {
+        fetchDiscordData();
+        // Set fetch to 2000ms (2 seconds) for live activity tracking
+        setInterval(fetchDiscordData, 2000); 
+
+        const widgetObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    widgetObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        widgetObserver.observe(widgetContainer);
+    }
+
+    // ==========================================
+    // CURSOR LOGIC
+    // ==========================================
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorCircle = document.querySelector('.cursor-circle');
     if (window.matchMedia("(pointer: fine)").matches) {
         let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0, circleX = 0, circleY = 0;
         window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
@@ -144,119 +537,122 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mousedown', () => cursorCircle?.classList.add('clicking'));
         document.addEventListener('mouseup', () => cursorCircle?.classList.remove('clicking'));
 
-        document.querySelectorAll('a, button, input, textarea, [role="button"]').forEach(el => {
+        document.querySelectorAll('a, button, input, textarea, [role="button"], .arsenal-item').forEach(el => {
             el.addEventListener('mouseenter', () => cursorCircle?.classList.add('link-hover'));
             el.addEventListener('mouseleave', () => cursorCircle?.classList.remove('link-hover'));
         });
     }
 
-
-
-    // --- CONTACT MODAL ---
-    const contactModal = document.getElementById('contact-modal');
-    const openModalTriggers = document.querySelectorAll('.contact-trigger');
-    const closeModalButton = document.getElementById('modal-close-button');
-
-    const openModal = (e) => {
-        e.preventDefault();
-        if (contactModal) {
-            contactModal.classList.add('visible');
-            body.classList.add('modal-open');
+    // ==========================================
+    // PROJECTS MODAL LOGIC
+    // ==========================================
+    const projectsData = [
+        {
+            title: "Zyron HomePage",
+            description: "A sleek and modern homepage designed for my custom browser project called 'Zyron'. This project showcases a clean interface with smooth animations and intuitive navigation. Although the browser project has been discontinued, this homepage demonstrates my frontend design capabilities and attention to user experience. Built with vanilla HTML, CSS, and JavaScript, it features responsive design and modern web standards.",
+            image: "https://cube.is-a.dev/assets/images/zyron.webp",
+            tags: ["HTML", "CSS", "JavaScript"],
+            links: [
+                { text: "Website", icon: "bx-link-external", url: "https://zyron.pages.dev" },
+                { text: "GitHub", icon: "bxl-github", url: "https://github.com/CubeZockii/Zyron" }
+            ]
+        },
+        {
+            title: "TaskWeb",
+            description: "A feature-rich task management application that allows users to organize their work efficiently. Users can add tasks, set priority levels (Low, Medium, High), and track progress through different status categories (To-Do, Ongoing, Done). The application includes a save/load system for persistent storage and supports collaborative boards where multiple users can work together on shared task lists. Perfect for personal productivity or team coordination.",
+            image: "https://cube.is-a.dev/assets/images/taskweb.webp",
+            tags: ["JavaScript", "HTML", "CSS", "Firebase", "Task Management"],
+            links: [
+                { text: "Website", icon: "bx-link-external", url: "https://taskweb.pages.dev" },
+                { text: "GitHub", icon: "bxl-github", url: "https://github.com/CubeZockii/TaskWeb" }
+            ]
+        },
+        {
+            title: "Kynex",
+            description: "A comprehensive Discord management bot built with Python and Discord.py. Kynex provides powerful moderation tools, utility commands, and server management features to keep communities organized, secure, and engaging. The bot includes custom command handlers, and an intuitive user experience. Features include automated moderation, custom roles, logging systems, and entertainment commands.",
+            image: "https://cube.is-a.dev/assets/images/kynex.webp",
+            tags: ["Python", "Discord.py"],
+            links: [
+                { text: "Website", icon: "bx-link-external", url: "https://kynex.pages.dev" },
+                { text: "GitHub", icon: "bxl-github", url: "https://github.com/CubeZockii/Kynex" }
+            ]
+        },
+        {
+            title: "MovieMaze",
+            description: "An Innovative web application that allows users to search for films, view details, and watch trailers. Built with modern web technologies, this project aims to provides seamless user experience for movie enthusiasts.",
+            image: "https://cube.is-a.dev/assets/images/MovieMaze.webp",
+            tags: ["JavaScript", "HTML", "CSS", "API Integration", "Film Database", "Backend"],
+            links: [
+                { text: "Website", icon: "bx-link-external", url: "https://moviemaze.pages.dev" },
+                { text: "GitHub", icon: "bxl-github", url: "https://GitHub.com/CubeZockii/MovieMaze" }
+            ]
+        },
+        {
+            title: "SnapVector",
+            description: "SnapVector is engineered for speed and reliability, ensuring instant, high-quality media delivery worldwide. Present your work elegantly in customizable, branded galleries, backed by advanced security controls like password protection and time-limited access.",
+            image: "https://cube.is-a.dev/assets/images/snapvector.webp",
+            tags: ["API", "Backend", "HTML", "CSS", "JavaScript", "Database"],
+            links: [
+                { text: "Website", icon: "bx-code-alt", url: "https://snapvector.pages.dev" }
+            ]
+        },
+        {
+            title: "Portfolio Website",
+            description: "The very website you're viewing right now! This portfolio was built entirely from scratch using vanilla HTML, CSS, and JavaScript. It features a modern glassmorphism design, smooth scroll animations, a custom cursor, Discord integration via the Lanyard API, and a fully responsive layout. The site showcases my frontend development skills and attention to detail in creating engaging user experiences. Everything from the animated gradients to the contact form has been carefully crafted to provide a premium browsing experience.",
+            image: "https://cube.is-a.dev/assets/images/portfolio.webp",
+            tags: ["HTML", "CSS", "JavaScript"],
+            links: [
+                { text: "You're here!", icon: "bx-show", url: "#home" },
+                { text: "GitHub", icon: "bxl-github", url: "#" }
+            ]
         }
-    };
-    const closeModal = () => {
-        if (contactModal) {
-            contactModal.classList.remove('visible');
-            body.classList.remove('modal-open');
-        }
-    };
+    ];
 
-    openModalTriggers.forEach(trigger => trigger.addEventListener('click', openModal));
-    if (closeModalButton) closeModalButton.addEventListener('click', closeModal);
-    if (contactModal) contactModal.addEventListener('click', (e) => {
-        if (e.target === contactModal) closeModal();
-    });
+    const projectModal = document.getElementById('project-modal');
+    const closeProjectBtn = document.getElementById('close-project-btn');
+    const projectCards = document.querySelectorAll('.project-card.clickable-card');
 
-    // --- FORM SUBMISSION ---
-    const contactForm = document.getElementById('contactForm');
-    const submitButton = document.getElementById('submitButton');
-    const messageModal = document.getElementById('message-modal');
+    const openProjectModal = (projectIndex) => {
+        const project = projectsData[projectIndex];
+        if (!project) return;
 
-    function showMessage(title, text, type = 'info') {
-        const messageModalTitle = document.getElementById('message-modal-title');
-        const messageModalText = document.getElementById('message-modal-text');
-        if (!messageModal || !messageModalTitle || !messageModalText) return;
-        messageModalTitle.textContent = title;
-        messageModalText.textContent = text;
-        messageModal.className = '';
-        if (type) messageModal.classList.add(type);
-        messageModal.style.display = 'flex';
-    }
-    const messageModalClose = document.getElementById('message-modal-close');
-    if (messageModalClose) messageModalClose.addEventListener('click', () => messageModal.style.display = 'none');
+        document.getElementById('project-modal-image').src = project.image;
+        document.getElementById('project-modal-title').textContent = project.title;
+        document.getElementById('project-modal-description').textContent = project.description;
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const originalButtonHTML = submitButton.innerHTML;
-            submitButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
-            submitButton.disabled = true;
-
-            try {
-                const response = await fetch("https://formspree.io/f/xyzjgpdl", {
-                    method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    closeModal();
-                    showMessage('Success!', 'Your message has been sent. Thank you!', 'success');
-                    contactForm.reset();
-                } else {
-                    throw new Error(`Server responded with status: ${response.status}`);
-                }
-            } catch (error) {
-                showMessage('Error', 'Could not send message. Please try again later.', 'error');
-                console.error("Form submission error:", error);
-            } finally {
-                submitButton.innerHTML = originalButtonHTML;
-                submitButton.disabled = false;
-            }
+        const tagsContainer = document.getElementById('project-modal-tags');
+        tagsContainer.innerHTML = '';
+        project.tags.forEach(tag => {
+            const tagEl = document.createElement('span');
+            tagEl.className = 'project-tag';
+            tagEl.textContent = tag;
+            tagsContainer.appendChild(tagEl);
         });
-    }
 
-    // --- Intersection Observer for Animations ---
-    const animatedElements = document.querySelectorAll('.skill-card, .project-card, .about-text, #discord-widget-container');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+        const linksContainer = document.getElementById('project-modal-links');
+        linksContainer.innerHTML = '';
+        project.links.forEach(link => {
+            const linkEl = document.createElement('a');
+            linkEl.className = 'project-link';
+            linkEl.href = link.url;
+            if (link.url !== '#' && !link.url.startsWith('#')) {
+                linkEl.target = '_blank';
             }
+            linkEl.innerHTML = `<i class='bx ${link.icon}'></i> ${link.text}`;
+            linksContainer.appendChild(linkEl);
         });
-    }, { threshold: 0.1 });
 
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
+        openModal(projectModal);
+    };
+
+    projectCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            const projectIndex = card.getAttribute('data-project');
+            openProjectModal(projectIndex);
+        });
     });
 
-    // --- FOOTER YEAR ---
-    const yearSpan = document.getElementById('current-year');
-    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-    // --- DISCORD WIDGET RESIZING ---
-    window.addEventListener('message', (event) => {
-        // Ensure the message is from the correct origin and contains the expected data
-        if (event.origin !== 'https://cubezockii.github.io' || !event.data || event.data.type !== 'resize-widget') {
-            return;
-        }
-
-        const { height, width } = event.data;
-        const iframe = document.getElementById('discord-widget-iframe');
-        if (iframe) {
-            iframe.style.height = `${height}px`;
-            iframe.style.width = `${width}px`;
-        }
-    });
-
+    if (closeProjectBtn) {
+        closeProjectBtn.addEventListener('click', () => closeModal(projectModal));
+    }
 });
