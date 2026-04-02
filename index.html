@@ -6,322 +6,442 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="CubeZockii">
     <meta name="description"
-        content="CubeZockii's personal developer site showcasing innovative web and software projects, focused on JavaScript, Python, and modern backend technologies.">
+        content="Portfolio of CubeZockii, a Creative Developer specializing in modern frontend experiences, sleek UI/UX design, and interactive web applications.">
 
-    <meta property="og:title" content="CubeZockii™ – Portfolio">
-    <meta property="og:description"
-        content="CubeZockii's personal developer site showcasing innovative web and software projects, focused on JavaScript, Python, and modern backend technologies.">
-    <meta property="og:image" content="https://cube.is-a.dev/assets/images/cubezockii.jpg">
+    <meta property="og:title" content="CubeZockii | Creative Developer">
+    <meta property="og:description" content="Portfolio of CubeZockii, a Creative Developer specializing in modern frontend experiences and sleek UI/UX design.">
     <meta property="og:url" content="https://cube.is-a.dev/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CubeZockii™ – Developer Portfolio">
-    <meta name="twitter:description"
-        content="CubeZockii's personal developer site showcasing innovative web and software projects, focused on JavaScript, Python, and modern backend technologies.">
-    <meta name="twitter:image" content="https://cube.is-a.dev/assets/images/cubezockii.jpg">
+    <meta name="twitter:title" content="CubeZockii | Creative Developer">
+    <meta name="twitter:description" content="Explore the creative development and UI/UX projects of CubeZockii.">
 
-    <title>CubeZockii™ - Portfolio</title>
-
-    <link id="dynamic-favicon" rel="icon" href="assets/images/profile.jpg" type="image/jpeg"
-        onerror="this.href='https://placehold.co/32x32/8b5cf6/ffffff?text=C'">
+    <title>CubeZockii | Creative Developer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/svg+xml"
+        href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.406 6.086-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035-.028.014-.058.023-.084.04-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01 9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095 18.538 7 12 9.905l-1.308-.581L5.463 7 12 4.095zM4 16.351V8.539l7 3.111v7.811l-7-3.11zm9 3.11V11.65l7-3.111v7.812l-7 3.11z"/></svg>'>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
 
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 
-<body class="loading">
+<body>
 
-    <div id="loader">
-        <div class="loader-content">
-            <h1 class="loader-text">CUBEZOCKII</h1>
-        </div>
-    </div>
+    <body class="loading-active">
 
-    <div id="stars-background"></div>
-    <div class="custom-cursor-dot"></div>
-    <div class="custom-cursor-circle"></div>
+        <div class="cursor-dot"></div>
+        <div class="cursor-circle"></div>
 
-    <header id="main-header">
-        <div class="logo">
-            <a href="#hero">CUBEZOCKII</a>
-        </div>
-        <nav id="main-nav-desktop" aria-label="Main desktop navigation">
-            <ul>
-                <li><a href="#hero" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#" class="contact-trigger">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-right">
-            <div class="social-links-desktop">
-                <a href="https://github.com/CubeZockii" target="_blank" rel="noopener noreferrer"
-                    aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/CubeZockii" target="_blank" rel="noopener noreferrer"
-                    aria-label="Twitter Profile"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://discord.gg/EM4ZSWH2GJ" target="_blank" rel="noopener noreferrer"
-                    aria-label="Discord Server"><i class="fab fa-discord"></i></a>
-            </div>
-            <button id="sidebar-menu-toggle" aria-label="Open mobile menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <div class="blackhole-box">
-        <video autoplay loop muted playsinline src="assets/images/blackhole.mp4"
-            poster="assets/images/blackhole_poster.jpg" onerror="this.style.display='none';">
-        </video>
-    </div>
-
-    <aside class="sidebar" id="sidebar" aria-label="Mobile navigation menu">
-        <button class="sidebar-close-button" id="sidebar-close-button" aria-label="Close mobile menu">
-            <i class="fas fa-times"></i>
-        </button>
-        <nav class="sidebar-nav">
-            <ul>
-                <li><a href="#hero" class="sidebar-link">Home</a></li>
-                <li><a href="#about" class="sidebar-link">About</a></li>
-                <li><a href="#skills" class="sidebar-link">Skills</a></li>
-                <li><a href="#projects" class="sidebar-link">Projects</a></li>
-                <li><a href="#" class="sidebar-link contact-trigger">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="sidebar-social-links">
-            <a href="https://github.com/CubeZockii" target="_blank" rel="noopener noreferrer"
-                aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-            <a href="https://x.com/CubeZockii" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i
-                    class="fab fa-x-twitter"></i></a>
-            <a href="https://discord.gg/EM4ZSWH2GJ" target="_blank" rel="noopener noreferrer"
-                aria-label="Discord Server"><i class="fab fa-discord"></i></a>
-        </div>
-    </aside>
-    <div class="overlay" id="overlay"></div>
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <span class="subtitle">Software Engineer &amp; Digital Architect</span>
-                <h1>Don't Chase Approval<br>Build your <strong>Own Legacy</strong></h1>
-                <p class="intro-text">
-                    Hi, I'm <span class="highlight-name">CUBEZOCKII</span>. I craft mind-bending digital experiences and
-                    robust software solutions, pushing the boundaries of web and mobile development.
-                </p>
-                <a href="#" class="cta-button contact-trigger">Let's Collaborate</a>
-            </div>
-            <div class="icon-constellation" aria-hidden="true"> <i class="fab fa-html5 skill-icon"></i>
-                <i class="fab fa-css3-alt skill-icon"></i>
-                <i class="fab fa-js-square skill-icon"></i>
-                <i class="fab fa-react skill-icon"></i>
-                <i class="fab fa-node-js skill-icon"></i>
-                <i class="fab fa-python skill-icon"></i>
-                <i class="fas fa-atom skill-icon"></i>
-                <i class="fas fa-brain skill-icon"></i>
-            </div>
-            <a href="#about" class="scroll-down-indicator" aria-label="Scroll to about section">
-                <svg width="28" height="45" viewBox="0 0 28 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.5" y="1.5" width="25" height="42" rx="12.5" stroke="currentColor" stroke-width="2" />
-                    <circle cx="14" cy="12" r="3" fill="currentColor" class="scroller-dot" />
-                </svg>
-            </a>
-        </section>
-
-        <section id="about">
-            <h2 class="section-title"><span>01.</span>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Greetings! I am CubeZockii and I´m 17 years old, Iḿ a passionate self-taught developer from
-                        Germany with love for
-                        building innovative and efficient applications.</p>
-                    <p>I've been honing my skills in Python for over a year and have recently dived into the world of
-                        JavaScript to create dynamic web experiences. My journey is all about constant learning and
-                        turning complex problems into elegang solutions.</p>
-                    <p>Key Technologies in My Arsenal:</p>
-                    <ul class="tech-list">
-                        <li>Javascript</li>
-                        <li>Python (Django, Flask)</li>
-                        <li>MongoDB, PostgreSQL</li>
-                        <li>HTML5 & CSS3</li>
-                    </ul>
-                </div>
-                <div class="discord-widget-wrapper">
-                    <iframe src="https://cubezockii.github.io/Widget/" id="discord-widget-iframe"
-                        style="border: hidden; background-color: var(--bg-primary-dark); width: 400px;"></iframe>
-                </div>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-title"><span>02.</span>My Arsenal</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-code skill-card-icon"></i>
-                    <h3>Languages</h3>
-                    <ul>
-                        <li><i class="fab fa-python skill-icon"></i>Python</li>
-                        <li><i class="fab fa-js-square skill-icon"></i>JavaScript</li>
-                        <li><i class="fab fa-html5 skill-icon"></i>HTML5</li>
-                        <li><i class="fab fa-css3-alt skill-icon"></i>CSS3</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-layer-group skill-card-icon"></i>
-                    <h3>Frameworks & Libraries</h3>
-                    <ul>
-                        <li><i class="fas fa-server skill-icon"></i>Flask</li>
-                        <li><i class="fas fa-bolt skill-icon"></i>FastAPI</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-database skill-card-icon"></i>
-                    <h3>Databases & Tools</h3>
-                    <ul>
-                        <li><i class="fas fa-database skill-icon"></i>MongoDB</li>
-                        <li><i class="fas fa-database skill-icon"></i>PostgreSQL</li>
-                        <li><i class="fas fa-database skill-icon"></i>MariaDB</li>
-                    </ul>
+        <div class="loader-overlay" id="loader">
+            <div class="loader-content">
+                <span class="loader-name">CubeZockii</span>
+                <div class="loader-progress-bar-container">
+                    <div class="loader-progress-bar-fill" id="loader-progress-fill"></div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="projects">
-            <h2 class="section-title"><span>03.</span>Forged In Code</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-media">
-                        <img src="assets/images/zyron.jpg" alt="Screenshot of Project Zyron" class="project-image"
-                            onerror="this.src='https://placehold.co/600x338/161E2D/ffffff?text=Zyron'">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Project Zyron</h3>
-                        <p class="project-description">A sleek homepage for my custom browser project, "Zyron". (Project
-                            discontinued)</p>
-                        <ul class="project-tech-stack">
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>JS</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://zyron.pages.dev" target="_blank" rel="noopener noreferrer"
-                                aria-label="Zyron HomePage"><i class="fas fa-external-link"></i></a>
-                            <a href="https://github.com/CubeZockii/Zyron" target="_blank" rel="noopener noreferrer"
-                                aria-label="View on GitHub"><i class="fab fa-github"></i></a>
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#home" class="nav-logo">
+                    <svg class="brand-cube" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="m21.406 6.086-9-4a1.001 1.001 0 0 0-.813 0l-9 4c-.02.009-.034.024-.054.035-.028.014-.058.023-.084.04-.022.015-.039.034-.06.05a.87.87 0 0 0-.19.194c-.02.028-.041.053-.059.081a1.119 1.119 0 0 0-.076.165c-.009.027-.023.052-.031.079A1.013 1.013 0 0 0 2 7v10c0 .396.232.753.594.914l9 4c.13.058.268.086.406.086a.997.997 0 0 0 .402-.096l.004.01 9-4A.999.999 0 0 0 22 17V7a.999.999 0 0 0-.594-.914zM12 4.095 18.538 7 12 9.905l-1.308-.581L5.463 7 12 4.095zM4 16.351V8.539l7 3.111v7.811l-7-3.11zm9 3.11V11.65l7-3.111v7.812l-7 3.11z" />
+                    </svg>
+                    <span>CubeZockii</span>
+                </a>
+                <div class="nav-menu" id="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                        <li class="nav-item"><a href="#connect" class="nav-link">Connect</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                    <div class="nav-close" id="nav-close"><i class='bx bx-x'></i></div>
+                </div>
+                <div class="nav-toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <section class="section hero" id="home">
+                <div class="hero-content container">
+                    <div class="hero-grid">
+                        <div class="hero-text">
+                            <h1 class="hero-title">
+                                <span>Hello, I'm</span>
+                                <span>
+                                    <h1 class="hero-name-gradient">CubeZockii</h1>
+                                </span>
+                            </h1>
+                            <p class="hero-intro-text">
+                                I'm a 17-year-old self-taught creative developer from Germany. I love building
+                                innovative
+                                applications, solving complex problems, and turning ideas into scalable, secure
+                                solutions.
+                            </p>
+                            <p class="hero-subtitle">
+                                I'm <span id="typed-output"></span>
+                            </p>
+                            <a href="#projects" class="project-button">View My Work</a>
+                        </div>
+                        <div class="hero-image-container">
+                            <img src="profile.webp" alt="A photo of CubeZockii" class="hero-profile-pic"
+                                onerror="this.src='https://placehold.co/400x400/111622/EBF0F5?text=Image+Error'">
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-media">
-                        <img src="assets/images/taskweb.jpg" alt="Screenshot of Project To-Do" class="project-image">
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">TaskWeb</h3>
-                        <p class="project-description">A simple To-Do list Website where users can add tasks, change
-                            their priority, change their status from ToDo, Ongoing and Done, mark them as done, and
-                            save/load their list. You can also create collaborative Boards where you can work with
-                            Friends</p>
-                        <ul class="project-tech-stack">
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>JavaScript</li>
-                            <li>FireBase</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://taskweb.pages.dev" target="_blank" rel="noopener noreferrer"
-                                aria-label="ToDo List Website"><i class="fas fa-external-link"></i></a>
-                            <a href="https://github.com/CubeZockii/TaskWeb" target="_blank" rel="noopener noreferrer"
-                                aria-label="View on GitHub"><i class="fab fa-github"></i></a>
+            </section>
+
+            <section class="section" id="about">
+                <div class="container section-content hidden">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-container">
+                        <div class="about-visual glass-card">
+                            <i class='bx bx-code-alt about-visual-icon'></i>
+                            <h3 class="about-visual-title">Who I Am</h3>
+                            <p class="about-text">
+                                I'm a 17-year-old passionate self-taught developer from Germany. My journey in tech is
+                                driven by a deep love for building innovative, efficient applications and solving
+                                complex
+                                problems. What started as a hobby has grown into a full-fledged passion for backend
+                                systems,
+                                web infrastructure, and the logic that makes modern applications tick.
+                            </p>
+                        </div>
+                        <div class="about-facts glass-card">
+                            <h3 class="about-visual-title">Quick Facts</h3>
+                            <ul class="about-facts-list">
+                                <li><i class='bx bx-rocket'></i> Self-taught</li>
+                                <li><i class='bx bx-world'></i> Based in Germany</li>
+                                <li><i class='bx bx-code-curly'></i> Refining Code knowledge</li>
+                                <li><i class='bx bx-code-curly'></i> Specializing in Frontend Development</li>
+                                <li><i class='bx bx-server'></i> Learning Backend Development</li>
+                                <li><i class='bx bx-code-curly'></i> Learning Php/Javascript</li>
+                                <li><i class='bx bx-time'></i> Always learning new tech</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <section class="section quote">
+                <div class="container section-content hidden">
+                    <div class="quote-container">
+                        <i class='bx bxs-quote-alt-left quote-icon'></i>
+                        <p class="quote-text">Don't Chase Approval. Build Your Own Legacy.</p>
+                        <i class='bx bxs-quote-alt-right quote-icon'></i>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="services">
+                <div class="container section-content hidden">
+                    <h2 class="section-title">What I Do</h2>
+                    <div class="services-grid">
+                        <div class="service-card glass-card">
+                            <i class='bx bx-code-curly service-icon'></i>
+                            <h3 class="service-title">Backend Development</h3>
+                            <p class="service-description">Building robust and scalable server-side logic, APIs, and
+                                database solutions using Python (Flask, FastAPI).</p>
+                        </div>
+                        <div class="service-card glass-card">
+                            <i class='bx bxl-discord-alt service-icon'></i>
+                            <h3 class="service-title">Discord Bot Development</h3>
+                            <p class="service-description">Creating custom, high-performance Discord bots with complex
+                                features, database integration, and intuitive user experiences.</p>
+                        </div>
+                        <div class="service-card glass-card">
+                            <i class='bx bx-server service-icon'></i>
+                            <h3 class="service-title">Web Infrastructure</h3>
+                            <p class="service-description">Deploying and managing applications using Nginx and
+                                Linux environments, ensuring high availability and performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="skills">
+                <div class="container section-content hidden">
+                    <h2 class="section-title">My Skills</h2>
+                    <div class="skills-container glass-card">
+                        <div class="skill-chart">
+                            <div class="skill-item"><span class="skill-name">Python</span>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill hidden" style="--skill-level: 25%;">25%</div>
+                                </div>
+                            </div>
+                            <div class="skill-item"><span class="skill-name">JavaScript</span>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill hidden" style="--skill-level: 8%;">8%</div>
+                                </div>
+                            </div>
+                            <div class="skill-item"><span class="skill-name">HTML</span>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill hidden" style="--skill-level: 30%;">30%</div>
+                                </div>
+                            </div>
+                            <div class="skill-item"><span class="skill-name">CSS</span>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill hidden" style="--skill-level: 15%;">15%</div>
+                                </div>
+                            </div>
+                            <div class="skill-item"><span class="skill-name">Php</span>
+                                <div class="skill-bar-bg">
+                                    <div class="skill-bar-fill hidden" style="--skill-level: 5%;">5%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skills-arsenal">
+                            <h3 class="arsenal-title">My Arsenal</h3>
+                            <div class="arsenal-category">
+                                <h4 class="arsenal-category-title">Languages & Frameworks</h4>
+                                <div class="arsenal-items">
+                                    <span class="arsenal-item">Python</span>
+                                    <span class="arsenal-item">JavaScript</span>
+                                    <span class="arsenal-item">Flask</span>
+                                    <span class="arsenal-item">FastAPI</span>
+                                </div>
+                            </div>
+                            <div class="arsenal-category">
+                                <h4 class="arsenal-category-title">Databases & Tools</h4>
+                                <div class="arsenal-items">
+                                    <span class="arsenal-item">MongoDB</span>
+                                    <span class="arsenal-item">MariaDB</span>
+                                    <span class="arsenal-item">GitHub</span>
+                                </div>
+                            </div>
+                            <div class="arsenal-category">
+                                <h4 class="arsenal-category-title">Infrastructure</h4>
+                                <div class="arsenal-items">
+                                    <span class="arsenal-item">Nginx</span>
+                                    <span class="arsenal-item">Linux</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="projects">
+                <div class="container section-content hidden">
+                    <h2 class="section-title">My Projects</h2>
+                    <div class="project-grid">
+                        <div class="project-card glass-card clickable-card" data-project="0">
+                            <img src="https://cube.is-a.dev/assets/images/zyron.webp" alt="Zyron HomePage"
+                                class="project-image"
+                                onerror="this.src='https://placehold.co/800x450/0d1117/f0f0f5?text=Zyron+HomePage'">
+                            <h3 class="project-title">Zyron HomePage</h3>
+                            <p class="project-description">A sleek HomePage for my custom Browser Project, "Zyron".
+                                (Project
+                                Discontinued).</p>
+                        </div>
+                        <div class="project-card glass-card clickable-card" data-project="1">
+                            <img src="https://cube.is-a.dev/assets/images/taskweb.webp" alt="TaskWeb Sidebar Logo"
+                                class="project-image"
+                                onerror="this.src='https://placehold.co/800x450/0d1117/f0f0f5?text=Collaborative+To-Do'">
+                            <h3 class="project-title">TaskWeb</h3>
+                            <p class="project-description">A collaborative task management system with priority levels
+                                and
+                                real-time sync.</p>
+                        </div>
+                        <div class="project-card glass-card clickable-card" data-project="2">
+                            <img src="https://cube.is-a.dev/assets/images/kynex.webp" alt="Kynex Landing Page"
+                                class="project-image"
+                                onerror="this.src='https://placehold.co/800x450/0d1117/f0f0f5?text=Discord+Bot+Kynex'">
+                            <h3 class="project-title">Kynex</h3>
+                            <p class="project-description">Management bot for moderation and utility. Keeps your server
+                                organized, secure, and engaging with easy-to-use tools.</p>
+                        </div>
+                        <div class="project-card glass-card clickable-card" data-project="3">
+                            <img src="https://cube.is-a.dev/assets/images/MovieMaze.webp" alt="MovieMaze Search Page"
+                                class="project-image">
+                            <h3 class="project-title">MovieMaze</h3>
+                            <p class="project-description">An innovative web app to search films, view details, and
+                                watch trailers with a seamless user experience.</p>
+                        </div>
+                        <div class="project-card glass-card clickable-card" data-project="4">
+                            <img src="https://cube.is-a.dev/assets/images/snapvector.webp" alt="SnapVector"
+                                class="project-image">
+                            <h3 class="project-title">SnapVector</h3>
+                            <p class="project-description">SnapVector — Professional media sharing for images and
+                                videos. Reliable, fast, and elegant.</p>
+                        </div>
+                        <div class="project-card glass-card clickable-card" data-project="5">
+                            <img src="https://cube.is-a.dev/assets/images/portfolio.webp"
+                                alt="Portfolio Landing Section" class="project-image">
+                            <h3 class="project-title">Portfolio Website</h3>
+                            <p class="project-description">The website you're viewing right now! Built from scratch.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="modal-overlay" id="project-modal">
+                <div class="modal-content glass-card project-modal-content">
+                    <button class="modal-close-btn" id="close-project-btn"><i class='bx bx-x'></i></button>
+                    <div class="project-modal-body">
+                        <img id="project-modal-image" src="" alt="Project Screenshot" class="project-modal-image">
+                        <h3 id="project-modal-title" class="project-modal-title"></h3>
+                        <div id="project-modal-tags" class="project-modal-tags"></div>
+                        <p id="project-modal-description" class="project-modal-description"></p>
+                        <div id="project-modal-links" class="project-modal-links"></div>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <section id="contact">
-            <h2 class="section-title"><span>04.</span>Initiate Contact</h2>
-            <div class="contact-content">
-                <p>My digital door is always open. Whether you have a groundbreaking idea, a complex challenge, or
-                    simply wish to connect, I look forward to hearing from you.</p>
-                <a href="#" class="cta-button contact-trigger">Launch Transmission</a>
+            <div class="modal-overlay" id="skill-modal">
+                <div class="modal-content glass-card project-modal-content">
+                    <button class="modal-close-btn" id="close-skill-btn"><i class='bx bx-x'></i></button>
+                    <div class="project-modal-body">
+                        <h3 id="skill-modal-title" class="project-modal-title" style="margin-bottom: 1rem;"></h3>
+                        <p id="skill-modal-description" class="project-modal-description"></p>
+                    </div>
+                </div>
             </div>
-            <video autoplay loop muted playsinline class="contact-background-video"
-                poster="assets/images/contact_video_poster.jpg">
-                <source src="assets/images/11.mp4" type="video/mp4">
-            </video>
-        </section>
-    </main>
 
-    <footer id="main-footer">
-        <p>&copy; <span id="current-year"></span> CUBEZOCKII. All Dimensions Reserved.</p>
-        <p>Forged in the Digital Cosmos by CUBEZOCKII</p>
-    </footer>
+            <section class="section" id="connect">
+                <div class="container section-content hidden">
+                    <h2 class="section-title">Connect</h2>
+                    <div class="connect-container">
+                        <div id="discord-widget-container">
+                            <div id="loader-overlay" class="loader-container">
+                                <p class="loader-text">Loading Profile...</p>
+                            </div>
+                            <div id="widget-content" style="display: none;">
+                                <div class="widget-header">
+                                    <div class="banner" id="widget-banner"></div>
+                                    <div class="avatar-container">
+                                        <img id="widget-avatar" class="avatar" alt="User Avatar"
+                                            crossorigin="anonymous" />
+                                        <div id="widget-status" class="status-badge">
+                                            <i id="status-icon" class="fas"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="user-info">
+                                        <h2 id="widget-username"></h2>
+                                        <p id="widget-discriminator" class="username"></p>
+                                    </div>
+                                    <div id="about-me-section">
+                                        <h3 class="section-header">About Me</h3>
+                                        <div id="widget-about-me" class="about-me-content"></div>
+                                    </div>
+                                    <div id="activities-section">
+                                        <h3 class="section-header">Active Now</h3>
+                                        <div id="activities-container" class="activities-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social-links glass-card">
+                            <p>Or find me on...</p>
+                            <a href="https://www.instagram.com/cubezockii" target="_blank" class="social-link"><i
+                                    class='bx bxl-instagram'></i>
+                                <span>Instagram</span></a>
+                            <a href="https://github.com/CubeZockii" target="_blank" class="social-link"><i
+                                    class='bx bxl-github'></i>
+                                <span>GitHub</span></a>
+                            <a href="https://x.com/CubeZockii" target="_blank" class="social-link"><i
+                                    class='bx bxl-twitter'></i> <span>Twitter /
+                                    X</span></a>
+                            <a href="https://discord.com/users/804361392344793119" target="_blank"
+                                class="social-link"><i class='bx bxl-discord-alt'></i>
+                                <span>Discord</span></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <a href="#hero" id="back-to-top" aria-label="Back to top" class="hidden">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+            <section class="section" id="contact">
+                <div class="container section-content hidden">
+                    <div class="contact-cta-container glass-card">
+                        <h2 class="section-title contact-title">Get in Touch</h2>
+                        <p class="contact-cta-text">Interested in working together or have a question? Send me a
+                            message!
+                        </p>
+                        <button class="cta-button" id="open-contact-btn">Let's Talk</button>
+                    </div>
+                </div>
+            </section>
 
-    <div id="contact-modal">
-        <div class="contact-container">
-            <h1>Contact Me</h1>
-            <form id="contactForm" method="POST" novalidate>
-                <div class="form-group">
-                    <label for="name" class="form-label">Your Discord Username/ID</label>
-                    <div style="position: relative;">
-                        <i class="fab fa-discord input-icon"></i>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="e.g., cubezockii"
-                            required>
+        </main>
+
+        <footer class="footer">
+            <div class="container footer-container">
+                <div class="footer-links">
+                    <a href="#about" class="footer-link">About</a>
+                    <a href="#services" class="footer-link">Services</a>
+                    <a href="#skills" class="footer-link">Skills</a>
+                    <a href="#projects" class="footer-link">Projects</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                </div>
+                <p class="footer-copy">&copy; 2025 CubeZockii. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <div class="modal-overlay" id="contact-modal">
+            <div class="modal-content glass-card">
+                <button class="modal-close-btn" id="close-contact-btn"><i class='bx bx-x'></i></button>
+                <h3 class="modal-title">Send me a message</h3>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="form-label">Your Email (Optional)</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-envelope input-icon"></i>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="you@domain.xyz">
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-input"
+                            placeholder="your.email@example.com" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="subject" class="form-label">Subject</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-lightbulb input-icon"></i>
-                        <input type="text" id="subject" name="subject" class="form-input"
-                            placeholder="Project / Collaboration" required>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="subject" id="subject" name="subject" class="form-input"
+                            placeholder="Partnership..." required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="message" class="form-label">Your Message</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-comment-dots input-icon"></i>
-                        <textarea id="message" name="message" rows="4" class="form-textarea"
-                            placeholder="Tell me more... what's on your mind?" required></textarea>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-input" rows="6" style="resize: none;"
+                            placeholder="Your message..." required></textarea>
                     </div>
-                </div>
-                <div class="form-button-group">
-                    <button type="button" id="modal-close-button" class="contact-submit-button">Cancel</button>
-                    <button type="submit" id="submitButton" class="contact-submit-button">
-                        <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i> Send
-                    </button>
-                </div>
-            </form>
+                    <button type="submit" class="cta-button submit-button" id="submit-button">Send Message</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div id="message-modal">
-        <div id="message-modal-content" class="contact-container" style="max-width: 450px;">
-            <h3 id="message-modal-title">Message Title</h3>
-            <p id="message-modal-text">Message details here.</p>
-            <button id="message-modal-close" class="cta-button">Close</button>
+        <div class="modal-overlay" id="message-modal">
+            <div class="modal-content glass-card">
+                <button class="modal-close-btn" id="close-message-btn"><i class='bx bx-x'></i></button>
+                <div id="message-modal-content">
+                    <i class='bx' id="message-modal-icon"></i>
+                    <p id="message-modal-text"></p>
+                    <button class="cta-button" id="close-message-btn-alt">Close</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <script src="js/main.js"></script>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+        <script src="js/main.js"></script>
+
+    </body>
 
 </html>
