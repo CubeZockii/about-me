@@ -54,8 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const FORMSPREE_ID = 'xyzjgpdl';
-    const formspreeURL = `https://formspree.io/f/${FORMSPREE_ID}`;
+    const backendURL = `http://n1.pulledtheirlife.support:2030/send-email`;
 
     const header = document.getElementById('header');
     if (header) {
@@ -189,18 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            if (FORMSPREE_ID === 'YOUR_ID_HERE') {
-                showMessage(false, "Form not set up. Please add Formspree ID in main.js.");
-                return;
-            }
-
+            // Save original button text and show loading state
             const originalButtonText = submitButton.innerText;
             submitButton.innerText = 'Sending...';
             submitButton.disabled = true;
 
             const formData = new FormData(contactForm);
 
-            fetch(formspreeURL, {
+            // Fetch using your new Python backend URL
+            fetch(backendURL, {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -210,20 +206,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => {
                     closeModal(contactModal);
                     if (response.ok) {
+                        // Success case
                         showMessage(true, "Thank you! Your message has been sent successfully.");
                         contactForm.reset();
                     } else {
+                        // Handle server errors (e.g., 500 Internal Server Error)
                         response.json().then(data => {
-                            const errorMsg = data.errors?.map(err => err.message).join(', ') || "Something went wrong.";
+                            // Looks for "error" (Flask) or "detail" (FastAPI) in your Python JSON response
+                            const errorMsg = data.error || data.detail || "Something went wrong on the server.";
                             showMessage(false, `Oops! ${errorMsg}`);
+                        }).catch(() => {
+                            // Fallback if the server doesn't return JSON
+                            showMessage(false, "Oops! Something went wrong.");
                         });
                     }
                 })
                 .catch(error => {
+                    // Handle network errors (e.g., your Python server isn't running)
                     closeModal(contactModal);
-                    showMessage(false, "Network error. Please try again later.");
+                    showMessage(false, "Network error. Please make sure the server is running.");
+                    console.error("Fetch Error:", error);
                 })
                 .finally(() => {
+                    // Reset button state
                     submitButton.innerText = originalButtonText;
                     submitButton.disabled = false;
                 });
