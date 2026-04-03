@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const backendURL = `http://n1.pulledtheirlife.support:2030/send-email`;
+    const backendURL = `https://portfolio-server.pulledtheirlife.support/send-email`;
 
     const header = document.getElementById('header');
     if (header) {
