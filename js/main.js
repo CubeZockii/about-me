@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const backendURL = `https://portfolio-server.pulledtheirlife.support/send-email`;
+    const backendURL = `http://n1.pulledtheirlife.support:2030/send-email`;
 
     const header = document.getElementById('header');
     if (header) {
@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timerInterval = null;
     let lastProfileUpdate = 0; // Tracks the last time we updated non-activity data
+    let fetchTimeout = null; // Tracks the dynamic fetch loop
 
     const formatTime = (ms) => {
         const totalSeconds = Math.floor(ms / 1000);
@@ -345,6 +346,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const fetchDiscordData = async () => {
+        let nextFetchDelay = 12000; // Default dynamic fetch set to 10 seconds
+
         try {
             const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
             if (!response.ok) {
@@ -401,7 +404,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     lastProfileUpdate = now;
                 }
 
-                // ALWAYS update activities on every tick (2 seconds)
+                // --- DYNAMIC FETCH LOGIC CALCULATION ---
+                const spotifyActivity = activities.find(act => act.name === 'Spotify');
+                if (spotifyActivity && spotifyActivity.timestamps) {
+                    const remaining = spotifyActivity.timestamps.end - Date.now();
+                    
+                    // If the song ends before our next standard 10s interval...
+                    if (remaining > 0 && remaining < 10000) {
+                        // Wait for the song to finish, THEN wait exactly 3 more seconds
+                        nextFetchDelay = remaining + 3000; 
+                    }
+                }
+
+                // ALWAYS update activities on every tick
                 activitiesContainerEl.innerHTML = '';
                 activitiesSection.style.display = 'block';
 
@@ -456,7 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         `;
 
                         if (activity.name === 'Spotify' && activity.timestamps) {
-                            // ... (Keep your existing Spotify progress bar logic exactly the same here)
                             const startTime = activity.timestamps.start;
                             const endTime = activity.timestamps.end;
                             const progressBarContainer = document.createElement('div');
@@ -497,13 +511,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (loaderOverlay) loaderOverlay.style.display = 'none';
             if (widgetContent) widgetContent.style.display = 'block';
             if (widgetContainer) widgetContainer.classList.add('visible');
+
+            // --- RECURSIVE TIMEOUT TRIGGER ---
+            clearTimeout(fetchTimeout);
+            fetchTimeout = setTimeout(fetchDiscordData, nextFetchDelay);
         }
     };
 
     if (widgetContainer) {
         fetchDiscordData();
-        // Set fetch to 2000ms (2 seconds) for live activity tracking
-        setInterval(fetchDiscordData, 2000); 
 
         const widgetObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
